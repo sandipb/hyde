@@ -1,6 +1,6 @@
 {{ define "main" -}}
 <div class="posts">
-{{ range .Site.RegularPages -}}
+{{ range ( .Paginate (where .Site.RegularPages "Type" "post")).Pages -}}
 <article class="post">
   <h1 class="post-title">
     <a href="{{ .Permalink }}">{{ .Title }}</a>
@@ -15,4 +15,5 @@
 </article>
 {{- end }}
 </div>
+{{- template "_internal/pagination.html" . }}
 {{- end }}
