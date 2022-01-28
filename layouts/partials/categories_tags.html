@@ -1,18 +1,18 @@
+{{ if isset .Params "categories" }}
+<div class="post_categories">
+<i class="fas fa-folder"></i>
+{{ range $index, $element := .Params.categories }}
+{{ if $index }},&nbsp;{{end}}<a href="/categories/{{ $element }}/">{{ $element }}</a>
+{{ end }}
+</div>
+{{ end }}
+
 {{ if isset .Params "tags" }}
 <div class="post_tags">
 <i class="fas fa-tags"></i>
 {{ range $index, $element := .Params.tags }}
 {{if $index}}&nbsp;&nbsp;{{end}}
 <a href="/tags/{{ . }}/">#{{ . }}</a>
-{{ end }}
-</div>
-{{ end }}
-
-{{ if isset .Params "categories" }}
-<div class="post_categories">
-<i class="fas fa-folder"></i>
-{{ range $index, $element := .Params.categories }}
-{{ if $index }},&nbsp;{{end}}<a href="/categories/{{ $element }}/">{{ $element }}</a>
 {{ end }}
 </div>
 {{ end }}
