@@ -1,0 +1,17 @@
+
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+  <link type="text/css" rel="stylesheet" href="{{ .Site.BaseURL }}css/custom-hyde.css">
+
+  <!-- All the meta tags below will come under this meta partial -->
+  {{ partial "meta" . }}
+
+  {{ range $.Site.Params.custom_css -}}
+    <link rel="stylesheet" href="{{.}}">
+  {{ end }}
+  {{ range $.Site.Params.custom_js -}}
+    <script src="{{.}}" type="application/javascript"></script>
+  {{ end }}
+{{ with $.Site.Params.plausibleDomain }}
+    <script defer data-domain="{{ . }}" data-exclude="{{ delimit $.Site.Params.plausibleExcludes ", " }}" src="/js/script.js"></script>
+{{ end }}

@@ -1,0 +1,71 @@
+  <!-- Thank you - https://www.skcript.com/svr/perfect-seo-meta-tags-with-hugo/ -->
+
+  <meta property="og:title" content="{{ if .IsHome }}{{ .Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}" />
+  <meta name="twitter:title" content="{{ if .IsHome }}{{ .Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}" />
+  <meta itemprop="name" content="{{ if .IsHome }}{{ .Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}" />
+  <meta name="application-name" content="{{ if .IsHome }}{{ .Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}" />
+  {{with .Site.Params.sitename}}<meta property="og:site_name" content="{{ . |  safeHTML}}" />{{ end }}
+
+  <base href="{{ .Permalink }}">
+  <link rel="canonical" href="{{ .Permalink }}" itemprop="url" />
+  <meta name="url" content="{{ .Permalink }}" />
+  <meta name="twitter:url" content="{{ .Permalink }}" />
+  <meta property="og:url" content="{{ .Permalink }}" />
+
+  <meta property="og:updated_time" content={{ .Lastmod.Format "2006-01-02T15:04:05Z0700" | safeHTML }} />
+
+
+  <!-- social media -->
+  <link rel="me" href="{{ .Site.Social.mastodon }}" />
+  <meta name="twitter:site" content="{{ .Site.Social.twitter }}">
+  <meta name="twitter:creator" content="{{ .Site.Social.twitter }}" />
+
+  <!-- other -->
+  <meta name="keywords" content="{{.Site.Params.keywords}}" />
+
+{{/* <!-- ONLY FOR BLOG POSTS --> */}}
+
+{{- if eq .Section "post" -}}
+
+<meta name="description" content="{{ .Summary |safeHTML| truncate 155 }}" />
+<meta itemprop="description" content="{{ .Summary | safeHTML| truncate 155 }}" />
+<meta property="og:description" content="{{ .Summary | safeHTML| truncate 155 }}" />
+<meta name="twitter:description" content="{{ .Summary | safeHTML| truncate 155 }}" />
+
+  <!-- Pagination meta tags for list pages only -->
+  {{ $paginator := .Paginate (where .Pages "Section" "post") }}
+  {{ if $paginator }}
+    <link rel="first" href="{{ $paginator.First.URL }}">
+    <link rel="last" href="{{ $paginator.Last.URL }}">
+    {{ if $paginator.HasPrev }}
+      <link rel="prev" href="{{ $paginator.Prev.URL }}">
+    {{end }}
+    {{ if $paginator.HasNext }}
+      <link rel="next" href="{{ $paginator.Next.URL }}">
+    {{end }}
+  {{end }}
+
+  <meta property="og:type" content="article" />
+  <meta property="og:article:published_time" content={{ .Date.Format "2006-01-02T15:04:05Z0700" | safeHTML }} />
+  <meta property="article:published_time" content={{ .Date.Format "2006-01-02T15:04:05Z0700" | safeHTML }} />
+
+  {{ with .Site.Params.author }}
+  <meta property="og:article:author" content="{{humanize . }}" />
+  <meta property="article:author" content="{{humanize . }}" />
+  <meta name="author" content="{{humanize . }}" />
+  {{ end }}
+
+  {{ with .Params.topics }}
+  <meta name="news_keywords" content="{{ index . 0 }}" />
+  <meta property="article:section" content="{{ index . 0 }}" />
+  {{ end }}
+{{ else -}}
+<!-- not a blog post -->
+{{- with .Site.Params.description}}
+  <meta name="description" content="{{ . | safeHTML }}" />
+  <meta itemprop="description" content="{{ . | safeHTML }}" />
+  <meta property="og:description" content="{{ . | safeHTML }}" />
+  <meta name="twitter:description" content="{{ . | safeHTML }}" />
+{{end}}
+
+{{ end }}
