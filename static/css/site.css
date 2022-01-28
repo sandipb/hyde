@@ -13,8 +13,18 @@
   flex-direction: column;
   gap: 1em;
   /* flex-grow: 1; */
+  /* justify-content: space-between; */
   width: 75%;
 }
+
+.post-index-summary > p {
+  margin-bottom: 0.25em;
+}
+
+/* .read-more-link {
+margin-top: auto; 
+ border: 1px solid blue;
+} */
 
 .post-index-image {
   display: flex;
