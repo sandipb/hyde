@@ -1,0 +1,30 @@
+{{ define "main" -}}
+<div class="post">
+  <h1>{{ .Title }}</h1>
+
+  <div class="search">
+    <form action="{{ "search" | absURL }}">
+      <input id="search-query" class="search-input" name="s"/>
+      <button type="submit" class="pure-button pure-button-primary">Go</button>
+    </form>
+
+    <div id="search-results">
+        <h3>Matching pages</h3>
+    </div>
+  </div>
+
+  <!-- this template is sucked in by search.js and appended to the search-results div above. So editing here will adjust style -->
+  <script id="search-result-template" type="text/x-js-template">
+      <div id="summary-${key}" class="search-result">
+        <h3><a href="${link}">${title}</a></h3>
+        <p class="search-result-snippet">${snippet}</p>
+        ${ isset tags }<p><i class="fa fa-tags fa-fw"></i> ${tags}</p>${ end }
+        ${ isset topics }<p><i class="fa fa-folder fa-fw"></i> ${topics}</p>${ end }
+      </div>
+  </script>
+</div>
+<!-- test -->
+<script>
+    checkSearch();
+</script>
+{{ end }}
