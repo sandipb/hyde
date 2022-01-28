@@ -1,4 +1,18 @@
 {{ define "main" -}}
 <h1>404: Page not found</h1>
-<p class="lead">Sorry, we've misplaced that URL or it's pointing to something that doesn't exist. <a href="{{ .Site.BaseURL }}">Head back home</a> to try finding it again.</p>
+
+<p style="text-align:center">
+Sorry. I have nothing for you at this URL.
+</p>
+<figure>
+	<img style="margin-left:auto;margin-right:auto"
+	src="/images/Sand-Dune-Dry-Landscape-Morocco-Desert-1270345.jpeg" 
+	alt="Sand dunes, Morocco" 
+	/>
+	<figcaption style="font-size: 0.7em;text-align: center;">Image credit: <a href="http://maxpixel.freegreatpicture.com/Sand-Dune-Dry-Landscape-Morocco-Desert-1270345">Max Pixel</a></figcaption>
+</figure>
+<p style="text-align:center">
+<a href="{{ .Site.BaseURL }}">Head back home</a> to try finding it again.
+</p>
+
 {{- end }}
